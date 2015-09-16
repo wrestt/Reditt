@@ -1,9 +1,17 @@
 <% include ../partials/header %>
 
-<a href="/users">Home</a>
+<a href="/posts">Home</a>
 <a href="/posts">Posts</a>
-<a href="/users/<%=user._id%>/edit">Edit Account</a>
-<h4>Posts</h4>
-
+<a href="/posts/<%=post._id%>/edit">Edit Post</a>
+<h4><%= post.title%></h4>
+</br>
+<h5><%= post.author%></h5>
+<h5><%= moment(post.date).format('llll')%></h5>
+<img src="<%= post.image%>" alt="<%= post.name%> Image Photo" />
+</br></br>
+<textarea name="<%= post._id%>" rows="8" cols="40"><%=post.content%></textarea>
+<form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+  <button type="submit" name="delete">Delete Post</button>
+</form>
 
 <% include ../partials/footer %>

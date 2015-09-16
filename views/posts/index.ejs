@@ -8,18 +8,24 @@
   <% posts.forEach(function(post){%>
     <li>
       <h4><%=post.title%></h4>
-      <a href="/posts/< post._id>"><img src="<%=post.image%>" alt="<%= post.content%>"/></a>
-      <textarea name="< post._id>" rows="8" cols="40"><%=post.content%></textarea>
+      <a href="/posts/<%= post._id%>"><img src="<%=post.image%>" alt="<%= post.content%>"/></a>
+      <textarea name="<%= post._id%>" rows="8" cols="40"><%=post.content%></textarea>
       </br>
       <%= post.author%><%= moment(post.date).format('llll') %>
       </br>
+      <a href="/posts/post._id/comments/new">New Comment</a>
+    </br>
+      <ul>
       <% post.comments.forEach(function(comment){%>
         <li>
           <h5><%=comment.author%></h5>
           <h5><%=moment(comment.date).format('llll')%></h5>
-          <textarea name="< comment._id>" rows="2" cols="40"><%=comment.content%></textarea>
+          </br>
+          <textarea name="<%= comment._id%>" rows="2" cols="40"><%=comment.content%></textarea>
+          </br>
         </li>
       <% })%>
+    </ul>
     </li>
   <% })%>
 </ul>

@@ -1,4 +1,26 @@
 <% include ../partials/header %>
-
+<a href="/users">Home</a>
+<a href="/posts">Posts</a>
+<a href="/posts/new">New Posts</a>
+<h1>Edit Post</h1>
+<form  action="/posts/<%=post._id%>?_method=PUT" method="post">
+  <ul>
+    <li>
+      <input type="text" name="title" value="<%=post.title%>">
+    </li>
+    <li>
+      <input type="text" name="image" value="<%=post.image%>">
+    </li>
+    <li>
+      <textarea type="text" name="content" rows="8" cols="40"><%=post.content%></textarea>
+    </li>
+  </ul>
+  <input type="hidden" name="date" value="<%=moment().format()%>">
+  <button type="submit">Update Post</button>
+</form>
+</br>
+<form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+  <button type="submit" name="delete">Delete Post</button>
+</form>
 
 <% include ../partials/footer %>

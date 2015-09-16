@@ -1,4 +1,24 @@
 <% include ../partials/header %>
 
 
+<a href="/users">Users Home</a>
+<a href="/posts">Posts Home</a>
+
+<form  action="/posts" method="post">
+<ul>
+  <li>
+    <input type="text" name="title" placeholder="Title">
+  </li>
+  <li>
+    <input type="text" name="content" placeholder="Content">
+  </li>
+  <li>
+    <input type="text" name="image" placeholder="Image Url">
+  </li>
+</ul>
+<input type="hidden" name="date" value="<%=moment().format()%>">
+<button type="submit" name="create">Create Post</button>
+</form>
+
+
 <% include ../partials/footer %>

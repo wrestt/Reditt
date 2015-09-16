@@ -1,5 +1,5 @@
 app.get('/', function(req, res){
-  res.redirect('./posts');
+  res.redirect('/posts');
 });
 
 require('./posts');

@@ -1,5 +1,25 @@
 <% include ../partials/header %>
 
-<%= user.name%>
+<h1>Edit Account</h1>
+<form class="" action="/users/<%=user._id%>?_method=PUT" method="post">
+  <ul>
+    <li>
+      <input type="text" name="name" value="<%=user.name%>">
+    </li>
+    <li>
+      <input type="text" name="email" value="<%=user.email%>">
+    </li>
+    <li>
+      <input type="password" name="password" value="<%=user.password%>">
+    </li>
+    <li>
+      <input type="date" name="<%=user.date%>">
+    </li>
+    <li>
+      <input type="text" name="avatar" value="<%=user.avatar%>">
+    </li>
+  </ul>
+  <button type="submit">Update Account</button>
+</form>
 
 <% include ../partials/footer %>

@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var db = require('./models');
 
+moment = require('moment')
 app = express();
 
 app.set('view engine', 'ejs');

@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+<h1>Sign up</h1>
+<form method="POST" action="/signup" >
+  <div class="form-group">
+    <label>Name:
+      <input type="text" id="name" name="user[name]" class="form-control" autofocus>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Email:
+      <input type="email" id="email" name="user[email]" class="form-control" >
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Birthday:
+      <input type="date" id="bday" name="user[bday]" class="form-control" >
+    </label>
+  </div>
+  <div class="form-group">
+    <label>Avatar:
+      <input type="text" id="avatar" name="user[avatar]" class="form-control" >
+    </label>
+  </div>
+  <div class="form-group">
+    <label> Password:
+      <input type="password" id="password" name="user[password]" class="form-control">
+    </label>
+  </div>
+  <div class="form-group">
+    <input type="submit" value="Sign up" class="btn btn-primary">
+  </div>
+</form>
+<a href="/login">Already have an account? Login in here</a>
+<% include ../partials/footer %>

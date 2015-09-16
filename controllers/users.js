@@ -8,24 +8,24 @@ app.get('/users', function(req, res){
 });
 
 // NEW
-app.get('/users/new', function(req, res){
-  res.render('users/new');
-});
-
-// replace with signup
-// CREATE
-app.post('/users', function(req,res){
-  var newUser = req.body;
-  db.User.create(newUser,
-  function(err, newUser){
-    if (err){
-      console.log(err);
-    } else {
-      console.log('new user made' + newUser);
-      res.redirect('/users');
-    }
-  });
-});
+// app.get('/users/new', function(req, res){
+//   res.render('users/new');
+// });
+//
+// // replace with signup
+// // CREATE
+// app.post('/users', function(req,res){
+//   var newUser = req.body;
+//   db.User.create(newUser,
+//   function(err, newUser){
+//     if (err){
+//       console.log(err);
+//     } else {
+//       console.log('new user made' + newUser);
+//       res.redirect('/users');
+//     }
+//   });
+// });
 
 
 // SHOW

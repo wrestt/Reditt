@@ -2,8 +2,8 @@ var db = require('../models/index');
 
 // INDEX
 app.get('/posts', function(req, res){
-  db.Post.find({}, function(req, res){
-    res.render('posts/index');
+  db.Post.find({}, function(err, posts){
+    res.render('posts/index', {posts: posts});
   });
 });
 

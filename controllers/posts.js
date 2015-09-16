@@ -42,7 +42,7 @@ app.get('/posts/:id', function(req, res){
 
 // EDIT
 app.get('/posts/:id/edit', function(req, res){
-
+  
 });
 
 // UPDATE

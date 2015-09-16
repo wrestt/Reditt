@@ -1,7 +1,7 @@
 var express = require('express');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
-var cookieSession = require('cookie-session');
+var session = require('cookie-session');
 var db = require('./models');
 
 loginMiddleware = require("./middleware/loginHelpers");

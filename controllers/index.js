@@ -5,6 +5,8 @@ app.get('/', function(req, res){
 require('./posts');
 require('./users');
 require('./comments');
+require('./signups');
+require('./logins');
 
 app.get('*', function(req,res){
   res.render('404');

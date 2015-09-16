@@ -12,7 +12,7 @@ app.get('/users/new', function(req, res){
   res.render('users/new');
 });
 
-
+// replace with signup
 // CREATE
 app.post('/users', function(req,res){
   var newUser = req.body;

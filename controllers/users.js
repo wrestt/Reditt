@@ -15,7 +15,7 @@ app.get('/users/new', function(req, res){
 
 // CREATE
 app.post('/users', function(req,res){
-  var newUser = req.body.user;
+  var newUser = req.body;
   db.User.create(newUser,
   function(err, newUser){
     if (err){
@@ -47,10 +47,24 @@ app.get('/users/:id/edit', function(req, res){
 
 // UPDATE
 app.put('/users/:id', function(req, res){
-
+  var updateInfo = req.body;
+  db.User.findByIdAndUpdate(req.params.id, updateInfo,
+    function(err, user){
+      if (err) {
+        res.render('users/edit', {user: user});
+      } else {
+        res.redirect('/users');
+      }
+    });
 });
 
 // DESTROY
 app.delete('/users/:id', function(req, res){
-
+  db.User.findByIdAndRemove(req.params.id, function(err, user){
+    if (err) {
+      res.render('users/show');
+    } else {
+      res.redirect('/users');
+    }
+  });
 });

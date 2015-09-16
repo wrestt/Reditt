@@ -41,7 +41,7 @@ app.get('/users/:id', function(req, res){
 // EDIT
 app.get('/users/:id/edit', function(req, res){
   db.User.findById(req.params.id, function(err, user){
-    res.render('user/edit', {user: user});
+    res.render('users/edit', {user: user});
   });
 });
 

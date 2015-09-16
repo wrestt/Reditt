@@ -53,7 +53,7 @@ app.put('/users/:id', function(req, res){
       if (err) {
         res.render('users/edit', {user: user});
       } else {
-        res.redirect('/users');
+        res.render('users/show', {user: user});
       }
     });
 });

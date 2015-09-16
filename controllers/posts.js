@@ -18,7 +18,7 @@ app.post('/posts', function(req, res){
 
 // SHOW
 app.get('/posts/:id', function(req, res){
-
+  
 });
 
 // EDIT

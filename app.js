@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var cookieSession = require('cookie-session');
 var db = require('./models');
 
-loginMiddleware = require("./middleware/loginHelper");
-routeMiddleware = require("./middleware/routeHelper");
+loginMiddleware = require("./middleware/loginHelpers");
+routeMiddleware = require("./middleware/routeHelpers");
 moment = require('moment');
 app = express();
 

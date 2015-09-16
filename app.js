@@ -7,8 +7,8 @@ var db = require('./models');
 app = express();
 
 app.set('view engine', 'ejs');
-app.use(express_static(_dirname + '/public'));
-app.use(bodyParser.urlencoced({extended:true}));
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 
 require('./controllers/index');

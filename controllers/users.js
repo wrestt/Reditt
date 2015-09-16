@@ -14,23 +14,22 @@ app.get('/user/new', function(req, res){
 
 
 // CREATE
-app.post('/user', function(req, res){
+app.post('/users', function(req,res){
   var newUser = req.body.user;
-  db.User.create({ newUser, function(err, newUser){
-      if (err) {
+  db.User.create(newUser,
+  function(err, newUser){
+    if (err){
       console.log(err);
-      res.render('users/new');
     } else {
       console.log(newUser);
       res.redirect('/users');
-    }
     }
   });
 });
 
 // SHOW
 app.get('/user/:id', function(req, res){
-  
+
 });
 
 // EDIT

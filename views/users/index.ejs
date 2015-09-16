@@ -1,0 +1,14 @@
+<% include ../partials/header %>
+
+
+<h4>Users Page</h4>
+<% users.forEach(function(user){ %>
+</br>
+<a href="/users/<%= user._id%>"><%= user.name%></a>
+
+<% })%>
+<a href="/users/new">Add a new Zoo</a>
+
+
+
+<% include ../partials/footer %>

@@ -1,14 +1,14 @@
 var db = require('../models/index');
 
 // INDEX
-app.get('/user', function(req, res){
+app.get('/users', function(req, res){
   db.User.find({}, function(err, users){
     res.render('users/index', {users: users});
   });
 });
 
 // NEW
-app.get('/user/new', function(req, res){
+app.get('/users/new', function(req, res){
   res.render('users/new');
 });
 
@@ -27,22 +27,29 @@ app.post('/users', function(req,res){
   });
 });
 
-// SHOW
-app.get('/user/:id', function(req, res){
 
+// SHOW
+app.get('/users/:id', function(req, res){
+  db.User.findById(req.params.id)
+    .populate('post')
+    .exec(function(err, user){
+      res.render('users/show', {user: user});
+    });
 });
 
 // EDIT
-app.get('/user/:id/edit', function(req, res){
-
+app.get('/users/:id/edit', function(req, res){
+  db.User.findById(req.params.id, function(err, user){
+    res.render('user/edit', {user: user});
+  });
 });
 
 // UPDATE
-app.put('/user/:id', function(req, res){
+app.put('/users/:id', function(req, res){
 
 });
 
 // DESTROY
-app.delete('/user/:id', function(req, res){
+app.delete('/users/:id', function(req, res){
 
 });

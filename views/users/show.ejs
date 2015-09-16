@@ -1,4 +1,11 @@
 <% include ../partials/header %>
 
-
+<h4><%= user.name%></h4>
+<a href="/users">Home</a>
+<img src="<%= user.avatar%>" alt="<%= user.name%> Avatar Photo" />
+<a tabIndex="-1" href="mailto:<%= user.email%>?subject=Hello,<%= user.name%>"><%= user.email%></a>
+</br>
+<form action="/users/<%= user._id %>?_method=DELETE" method="post">
+  <button type="submit" name="delete">Delete Profile</button>
+</form>
 <% include ../partials/footer %>

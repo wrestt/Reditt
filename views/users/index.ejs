@@ -2,12 +2,16 @@
 
 
 <h4>Users Page</h4>
-<% users.forEach(function(user){ %>
-</br>
-<a href="/users/<%= user._id%>"><%= user.name%></a>
+<ul>
+  <% users.forEach(function(user){ %>
+  <li>
+    <a href="/users/<%= user._id%>">name:<%= user.name%></a>
+  </li>
+  <% })%>
+</ul>
 
-<% })%>
-<a href="/users/new">Add a new Zoo</a>
+
+<a href="/users/new">Signup</a>
 
 
 

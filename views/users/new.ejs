@@ -1,4 +1,28 @@
 <% include ../partials/header %>
 
+<a href="/users">Home</a>
+
+<form  action="/users" method="post">
+<ul>
+  <li>
+    <input type="text" name="name" placeholder="User Name">
+  </li>
+  <li>
+    <input type="text" name="email" placeholder="Email">
+  </li>
+  <li>
+    <input type="password" name="password" placeholder="Password">
+  </li>
+  <li>
+    <input type="date" name="bady">
+  </li>
+  <li>
+    <input type="text" name="avatar" placeholder="Avatar Url">
+  </li>
+</ul>
+<button type="submit">Create</button>
+</form>
+
+
 
 <% include ../partials/footer %>

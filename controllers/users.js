@@ -15,13 +15,13 @@ app.get('/users/new', function(req, res){
 
 // CREATE
 app.post('/users', function(req,res){
-  var newUser = req.body.user;
+  var newUser = req.body;
   db.User.create(newUser,
   function(err, newUser){
     if (err){
       console.log(err);
     } else {
-      console.log(newUser);
+      console.log('new user made' + newUser);
       res.redirect('/users');
     }
   });
@@ -33,6 +33,7 @@ app.get('/users/:id', function(req, res){
   db.User.findById(req.params.id)
     .populate('post')
     .exec(function(err, user){
+      console.log(user);
       res.render('users/show', {user: user});
     });
 });

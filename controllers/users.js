@@ -34,7 +34,7 @@ app.get('/users/:id', function(req, res){
     .populate('post')
     .exec(function(err, user){
       console.log(user);
-      res.render('users/show', {user: user});
+      res.render('users/show', {user: user, moment: moment});
     });
 });
 

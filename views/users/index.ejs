@@ -3,10 +3,16 @@
 
 
 <h4>Users Page</h4>
-<ul>
+
+<ul class="collection">
   <% users.forEach(function(user){ %>
-  <li>
-    <a href="/users/<%= user._id%>"><%= user.name%></a>
+  <li class="collection-item avatar">
+    <img src="<%= user.avatar%>" alt="<%= user.name%> avatar" class="circle">
+    <span class="title"><a href="/users/<%= user._id%>"><%= user.name%></a></span>
+    <p><%= moment(user.bday).format('l') %><br>
+       <%= user.email%>
+    </p>
+    <a href="/users/<%= user._id%>" class="secondary-content"><i class="material-icons">grade</i></a>
   </li>
   <% })%>
 </ul>

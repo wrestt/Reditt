@@ -3,7 +3,7 @@ var db = require('../models/index');
 // INDEX
 app.get('/users', function(req, res){
   db.User.find({}, function(err, users){
-    res.render('users/index', {users: users});
+    res.render('users/index', {users: users, moment:moment});
   });
 });
 

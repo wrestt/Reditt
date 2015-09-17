@@ -25,6 +25,19 @@ app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn,function(
 
 // CREATE
 app.post('/posts/:post_id/comments', function(req, res){
+  db.Post.findById(req.params.post_id, function(err, post){
+    if (err) {
+      console.log(err);
+    } else {
+      db.Comment.create(req.body, function(err, comment){
+        post.comments.push(comment);
+        comment.post = post._id;
+        comment.save();
+        post.save();
+        res.redirect('/posts' + post._id + '/comments');
+      });
+    }
+  });
   var newComment = req.body;
   db.Comment.create(newComment, function(err, comment){
     if (err) {
@@ -36,17 +49,17 @@ app.post('/posts/:post_id/comments', function(req, res){
 });
 
 // SHOW
-app.get('/posts/:post_id/comments/:id', function(req, res){
-  db.Comment.findById(req.params.id)
-  .populate('post')
-  .exec(function(err, comment){
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('comments/show');
-    }
-  });
-});
+// app.get('/posts/:post_id/comments/:id', function(req, res){
+//   db.Comment.findById(req.params.id)
+//   .populate('post')
+//   .exec(function(err, comment){
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.render('comments/show');
+//     }
+//   });
+// });
 
 // EDIT
 app.get('/posts/:post_id/comments/:id/edit', routeMiddleware.ensureCorrectUser,function(req, res){

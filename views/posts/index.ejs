@@ -12,19 +12,7 @@
       </br>
       <%= post.author%><%= moment(post.date).format('llll') %>
       </br>
-      <a href="/posts/post._id/comments/new">New Comment</a>
-    </br>
-      <ul>
-      <% post.comments.forEach(function(comment){%>
-        <li>
-          <h5><%=comment.author%></h5>
-          <h5><%=moment(comment.date).format('llll')%></h5>
-          </br>
-          <textarea name="<%= comment._id%>" rows="2" cols="40"><%=comment.content%></textarea>
-          </br>
-        </li>
-      <% })%>
-    </ul>
+      <a href="/posts/post._id/comments">Comments</a>
     </li>
   <% })%>
 </ul>

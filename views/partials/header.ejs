@@ -11,21 +11,22 @@
 
   </head>
   <header>
-
-    <div class="card-panel #a1887f brown lighten-2">
-      <div class="col s12">
-        <a href="/users">Users</a>
-        <% if (userSession) { %>
-          <a href="/logout">Logout</a>
-          <a href="/posts/new">New Posts</a>
-        <% } else { %>
-          <a href="/signup">Signup</a>
-          <a href="/login">Login</a>
-        <% } %>
-        <a href="/posts">Posts</a>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/posts" class="brand-logo">Feddit</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/users">Users</a></li>
+          <% if (userSession) { %>
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/posts/new">New Posts</a></li>
+          <% } else { %>
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/login">Login</a></li>
+          <% } %>
+          <li><a href="/posts">Posts</a></li>
+        </ul>
       </div>
-    </div>
-
+    </nav>
   </header>
   <body>
     <div class="container">

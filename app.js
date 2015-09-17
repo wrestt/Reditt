@@ -5,8 +5,6 @@ var session = require('cookie-session');
 var db = require('./models');
 
 
-
-
 loginMiddleware = require("./middleware/loginHelpers");
 routeMiddleware = require("./middleware/routeHelpers");
 moment = require('moment');
@@ -26,6 +24,8 @@ app.use(function(req, res, next){
   res.locals.userSession = req.session.id;
   next();
 });
+
+
 require('./controllers/index');
 
 app.listen(3000, function(){

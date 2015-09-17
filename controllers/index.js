@@ -8,7 +8,11 @@ require('./comments');
 require('./signups');
 require('./logins');
 
-app.get()
+app.get('/logout', function(req, res){
+  console.log('logout');
+  req.logout();
+  res.redirect('/');
+});
 
 app.get('*', function(req,res){
   res.render('404');

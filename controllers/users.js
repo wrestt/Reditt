@@ -31,9 +31,9 @@ app.get('/users', function(req, res){
 // SHOW
 app.get('/users/:id',function(req, res){
   db.User.findById(req.params.id)
-    .populate('post')
+    .populate('posts')
     .exec(function(err, user){
-      console.log(user);
+      console.log(user.posts);
       res.render('users/show', {user: user, moment: moment});
     });
 });

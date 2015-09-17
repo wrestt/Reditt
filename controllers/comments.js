@@ -4,11 +4,11 @@ var db = require('../models/index');
 app.get('/posts/:post_id/comments', function(req, res){
   db.Comment.find({}, function(err, comments){
     res.render('comments/index', {comments: comments});
-  })
+  });
 });
 
 // NEW
-app.get('/posts/:post_id/comments/new', function(req, res){
+app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn,function(req, res){
   res.render('comments/new');
 });
 
@@ -21,7 +21,7 @@ app.post('/posts/:post_id/comments', function(req, res){
     } else {
         res.render('comments/new', {comment: comment});
       }
-  })
+  });
 });
 
 // SHOW
@@ -34,13 +34,13 @@ app.get('/posts/:post_id/comments/:id', function(req, res){
     } else {
       res.render('comments/show');
     }
-  })
+  });
 });
 
 // EDIT
-app.get('/posts/:post_id/comments/:id/edit', function(req, res){
+app.get('/posts/:post_id/comments/:id/edit', routeMiddleware.ensureCorrectUser,function(req, res){
  db.Comment.findById(req.params.id, function(err, comment){
-   res.render('comments/edit', {comment:comment})
+   res.render('comments/edit', {comment:comment});
  });
 });
 
@@ -50,17 +50,16 @@ app.put('/posts/:post_id/comments/:id', function(req, res){
   db.Comment.findByIdAndUpdate(req.params.id, updateContent,
     function(err, comment){
       if (err) {
-        console.log(err)
+        console.log(err);
       } else {
         console.log(commnet);
-        res.redirect('/posts/:post_id/comments')
+        res.redirect('/posts/' + req.params.post_id  + '/comments');
       }
-    }
-  )
+    });
 });
 
 // DESTROY
-app.delete('posts/:post_id/comments/:id', function(req, res){
+app.delete('posts/:post_id/comments/:id', routeMiddleware.ensureCorrectUser,function(req, res){
   db.Comment.findByIdAndRemove(req.params.id, function(err, comment){
     if (err) {
       console.log(err);
@@ -69,5 +68,5 @@ app.delete('posts/:post_id/comments/:id', function(req, res){
       console.log('deleted comment');
       res.redirect('posts/' + reg.params.post_id + '/comments');
     }
-  })
+  });
 });

@@ -29,7 +29,7 @@ app.get('/users', function(req, res){
 
 
 // SHOW
-app.get('/users/:id', function(req, res){
+app.get('/users/:id',function(req, res){
   db.User.findById(req.params.id)
     .populate('post')
     .exec(function(err, user){

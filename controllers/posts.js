@@ -8,7 +8,7 @@ app.get('/posts', function(req, res){
 });
 
 // NEW
-app.get('/posts/new', function(req, res){
+app.get('/posts/new', routeMiddleware.ensureLoggedIn,function(req, res){
   res.render('posts/new');
 });
 
@@ -17,7 +17,7 @@ app.get('/posts/new', function(req, res){
 app.post('/posts', function(req, res){
   var newPost = req.body;
   if (!newPost.image) {
-    newPost.image = 'default.gif'
+    newPost.image = 'default.gif';
   }
   db.Post.create(newPost, function(err, post){
     if(err){

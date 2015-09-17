@@ -9,7 +9,12 @@ app.get('/posts/:post_id/comments', function(req, res){
 
 // NEW
 app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn,function(req, res){
-  res.render('comments/new');
+  db.User.findById(req.session.id)
+         .populate('post')
+         .exec(function(err, user){
+           console.log(user);
+           res.render('comments/new', {user: user});
+         });
 });
 
 // CREATE

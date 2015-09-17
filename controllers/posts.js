@@ -16,16 +16,17 @@ app.get('/posts/new', routeMiddleware.ensureLoggedIn,function(req, res){
 // CREATE
 app.post('/posts', function(req, res){
   var newPost = req.body;
-  if (!newPost.image) {
-    newPost.image = 'default.gif';
-  }
-  db.Post.create(newPost, function(err, post){
-    if(err){
-      console.log(err);
-      res.render('posts/new', {post: post});
-    } else {
-      res.redirect('/posts');
+  db.User.findById(req.session.id, function(err, user){
+    if (!newPost.image) {
+      newPost.image = 'default.gif';
     }
+    db.Post.create(newPost, function(err, post){
+      user.posts.push(post);
+      post.owner = user._id;
+      user.save();
+      post.save();
+      res.redirect('/posts');
+    });
   });
 });
 

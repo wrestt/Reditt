@@ -7,11 +7,13 @@
   </head>
   <header>
     <a href="/users">Users</a>
-    <a href="/users/signup">Signup</a>
-    <a href="/users/login">Login</a>
+    <% if (typeof user !== undefined) { %>
+      <a href="/signup">Signup</a>
+      <a href="/login">Login</a>
+    <% } else { %>
+      <a href="/logout">Logout</a>
+    <% } %>
     <a href="/posts">Posts</a>
     <a href="/posts/new">New Posts</a>
   </header>
   <body>
-    <a href="/logout">Logout</a>
-    <a href="/login">Login</a>

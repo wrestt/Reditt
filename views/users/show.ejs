@@ -16,17 +16,16 @@
   <button type="submit" name="delete">Delete Profile</button>
 </form>
 </br></br>
-<% user.posts.forEach(function(post){%>
-<ul>
-  <li>
-    <a href="/posts/<%= post.id %>"><%= post.title %></a>
-    </br>
-    <p>
-      <%= moment(post.date).format('llll') %>
-    </p>
-  </li>
-</ul>
-
-<% }) %>
-
+  <ul class="collection">
+    <% user.posts.forEach(function(post){ %>
+    <li class="collection-item avatar">
+      <img src="<%= post.image%>" alt="<%= user.name%> <%= post.content%>" class="circle">
+      <span class="title"><a href="/posts/<%= post._id%>"><%= post.title%></a></span>
+      <p><%= moment(post.date).format('l') %><br>
+         <%= post.content%>
+      </p>
+      <a href="/posts/<%= post._id%>" class="secondary-content"><i class="material-icons">grade</i></a>
+    </li>
+    <% })%>
+  </ul>
 <% include ../partials/footer %>

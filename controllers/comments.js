@@ -2,19 +2,25 @@ var db = require('../models/index');
 
 // INDEX
 app.get('/posts/:post_id/comments', function(req, res){
-  db.Comment.find({}, function(err, comments){
-    res.render('comments/index', {comments: comments});
-  });
+  db.Post.findById(req.params.post_id, function(err, post){
+    if (err) {
+      console.log(err);
+    } else {
+      db.Comment.find({}, function(err, comments){
+        res.render('comments/index', {comments: comments, post:post});
+      });
+    }
+  })
 });
 
 // NEW
 app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn,function(req, res){
   db.User.findById(req.session.id)
-         .populate('post')
-         .exec(function(err, user){
-           console.log(user);
-           res.render('comments/new', {user: user});
-         });
+   .populate('post')
+   .exec(function(err, user){
+     console.log(user);
+     res.render('comments/new', {user: user});
+   });
 });
 
 // CREATE

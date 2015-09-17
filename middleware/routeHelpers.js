@@ -28,4 +28,5 @@ var routeHelpers = {
     }
   }
 };
+
 module.exports = routeHelpers;

@@ -19,7 +19,7 @@
 <% user.posts.forEach(function(post){%>
 <ul>
   <li>
-    <a href="/posts/<%= post.id %>"><%= post.title%></a>
+    <a href="/posts/<%= post.id %>"><%= post.title %></a>
     </br>
     <p>
       <%= moment(post.date).format('llll') %>

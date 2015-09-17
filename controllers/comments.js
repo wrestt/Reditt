@@ -10,17 +10,21 @@ app.get('/posts/:post_id/comments', function(req, res){
         res.render('comments/index', {comments: comments, post:post});
       });
     }
-  })
+  });
 });
 
 // NEW
 app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn,function(req, res){
-  db.User.findById(req.session.id)
-   .populate('post')
-   .exec(function(err, user){
-     console.log(user);
-     res.render('comments/new', {user: user});
-   });
+  db.Post.findById(req.params.post_id, function(err, post){
+    if (err) {
+      console.log(err);
+    } else {
+      db.User.findById(req.session.id, function(err, user){
+         console.log("post", post);
+         res.render('comments/new', {user: user, post: post});
+       });
+    }
+  });
 });
 
 // CREATE
@@ -34,17 +38,9 @@ app.post('/posts/:post_id/comments', function(req, res){
         comment.post = post._id;
         comment.save();
         post.save();
-        res.redirect('/posts' + post._id + '/comments');
+        res.redirect('/posts/' + post._id + '/comments');
       });
     }
-  });
-  var newComment = req.body;
-  db.Comment.create(newComment, function(err, comment){
-    if (err) {
-      console.log(err);
-    } else {
-        res.render('comments/new', {comment: comment});
-      }
   });
 });
 

@@ -1,16 +1,12 @@
 <% include ../partials/header %>
 
-
-<a href="/users">Users Home</a>
-<a href="/posts">Posts Home</a>
-
 <form  action="/posts" method="post">
 <ul>
   <li>
     <input type="text" name="title" placeholder="Title">
   </li>
   <li>
-    <input type="text" name="content" placeholder="Content">
+    <textarea type="text" name="content" rows="8" cols="40" placeholder="Content"></textarea>
   </li>
   <li>
     <input type="text" name="image" placeholder="Image Url">

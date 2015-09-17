@@ -8,7 +8,7 @@ require('./comments');
 require('./signups');
 require('./logins');
 
-app.get()
+// app.get()
 
 app.get('*', function(req,res){
   res.render('404');

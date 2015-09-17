@@ -16,6 +16,9 @@ app.get('/posts/new', function(req, res){
 // CREATE
 app.post('/posts', function(req, res){
   var newPost = req.body;
+  if (!newPost.image) {
+    newPost.image = 'default.gif'
+  }
   db.Post.create(newPost, function(err, post){
     if(err){
       console.log(err);

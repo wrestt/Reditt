@@ -11,7 +11,8 @@ app.post('/login', function(req, res){
       req.login(user);
       res.redirect('/users');
     } else {
-      res.render('users/login');
+      console.log('error:', err);
+      res.render('users/login', {user: user});
     }
   });
 });

@@ -62,6 +62,7 @@ userSchema.statics.authenticate = function (formData, callback) {
 
 userSchema.methods.checkPassword = function(password, callback) {
   var user = this;
+
   bcrypt.compare(password, user.password, function (err, isMatch) {
     if (isMatch) {
       callback(null, user);

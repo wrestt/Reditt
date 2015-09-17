@@ -7,7 +7,7 @@
 <a tabIndex="-1" href="mailto:<%= user.email%>?subject=Hello,<%= user.name%>"><%= user.email%></a>
 <div class="birthday">
   <p>
-    <%= moment(user.bday).format('l')%>
+    <%= moment(user.bday).add(1, "day").format('l')%>
   </p>
 </div>
 <img src="<%= user.avatar%>" alt="<%= user.name%> Avatar Photo" />

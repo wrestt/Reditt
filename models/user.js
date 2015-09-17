@@ -51,7 +51,6 @@ userSchema.statics.authenticate = function (formData, callback) {
     email: formData.email
   },
   function (err, user) {
-    console.log("authenticate cb: ", user);
     if (user === null){
       callback("Invalid username or password",null);
     }
@@ -63,6 +62,7 @@ userSchema.statics.authenticate = function (formData, callback) {
 
 userSchema.methods.checkPassword = function(password, callback) {
   var user = this;
+
   bcrypt.compare(password, user.password, function (err, isMatch) {
     if (isMatch) {
       callback(null, user);

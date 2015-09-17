@@ -9,7 +9,6 @@ require('./signups');
 require('./logins');
 
 app.get('/logout', function(req, res){
-  console.log('logout');
   req.logout();
   res.redirect('/');
 });

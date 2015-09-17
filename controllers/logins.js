@@ -5,15 +5,13 @@ app.get('/login', routeMiddleware.preventLoginSignup, function(req, res){
 });
 
 app.post('/login', function(req, res){
-  console.log(req.body.user);
   db.User.authenticate(req.body.user,
   function(err, user){
-    console.log(user);
     if (!err && user !== null) {
-      console.log("login", req.login(user));
       req.login(user);
       res.redirect('/users');
     } else {
+      console.log('error:', err);
       res.render('users/login', {user: user});
     }
   });

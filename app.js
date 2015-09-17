@@ -22,7 +22,10 @@ app.use(session({
   name: "user"
 }));
 app.use(loginMiddleware);
-
+app.use(function(req, res, next){
+  res.locals.userSession = req.session.id;
+  next();
+});
 require('./controllers/index');
 
 app.listen(3000, function(){

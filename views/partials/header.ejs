@@ -11,16 +11,21 @@
 
   </head>
   <header>
+
     <div class="card-panel #a1887f brown lighten-2">
       <div class="col s12">
         <a href="/users">Users</a>
-        <a href="/signup">Signup</a>
-        <a href="/login">Login</a>
-        <a href="/logout">Logout</a>
+        <% if (userSession) { %>
+          <a href="/logout">Logout</a>
+          <a href="/posts/new">New Posts</a>
+        <% } else { %>
+          <a href="/signup">Signup</a>
+          <a href="/login">Login</a>
+        <% } %>
         <a href="/posts">Posts</a>
-        <a href="/posts/new">New Posts</a>
       </div>
     </div>
+
   </header>
   <body>
     <div class="container">

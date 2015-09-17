@@ -12,7 +12,7 @@
       </br>
       <%= post.author%><%= moment(post.date).format('llll') %>
       </br>
-      <a href="/posts/post._id/comments">Comments</a>
+      <a href='/posts/<%= post._id %>/comments'>Comments</a>
     </li>
   <% })%>
 </ul>

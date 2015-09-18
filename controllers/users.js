@@ -39,20 +39,16 @@ app.get('/users/:id',function(req, res){
         db.Post.populate(user, {
           path: 'posts.comments',
           model: "Comment"
-<<<<<<< HEAD
       },
     function(err, posts){
       console.log(posts);
       res.render('users/show', {user: user, posts: posts, moment: moment});
-=======
+
         });
       }
-      res.render('users/show', {user: user, posts: user.posts || [], moment: moment});
->>>>>>> 9ef816aa6403621ae4069e5258537e4fe7c0f2b9
     });
-  }
 });
-});
+
 
 // EDIT
 app.get('/users/:id/edit', function(req, res){

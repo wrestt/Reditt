@@ -43,7 +43,6 @@ app.get('/users/:id',function(req, res){
     function(err, posts){
       console.log(posts);
       res.render('users/show', {user: user, posts: posts, moment: moment});
-
         });
       }
     });

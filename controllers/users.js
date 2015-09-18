@@ -39,10 +39,13 @@ app.get('/users/:id',function(req, res){
         db.Post.populate(user, {
           path: 'posts.comments',
           model: "Comment"
-        });
-      }
-      res.render('users/show', {user: user, posts: user.posts, moment: moment});
+      },
+    function(err, posts){
+      console.log(posts);
+      res.render('users/show', {user: user, posts: posts, moment: moment});
     });
+  }
+});
 });
 
 // EDIT

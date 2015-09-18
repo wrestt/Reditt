@@ -1,19 +1,19 @@
 <% include ../partials/header %>
 
-<h1>Edit Commetn</h1>
-<form  action="/comments/<%=comment._id%>?_method=PUT" method="post">
-  <ul>
-    <li>
-      <textarea type="text" name="content" rows="8" cols="40"><%=comment.content%></textarea>
-    </li>
-  </ul>
-  <input type="hidden" name="author" value="<%=  %>">
-  <input type="hidden" name="date" value="<%=moment().format()%>">
-  <button type="submit">Update Post</button>
-</form>
-</br>
-<form action="/comments/<%= comment._id %>?_method=DELETE" method="comment">
-  <button type="submit" name="delete">Delete Post</button>
-</form>
+  <h1>Edit Commetn</h1>
+  <form  action="/comments/<%=comment._id%>?_method=PUT" method="post">
+    <ul>
+      <li>
+        <textarea type="text" name="content" rows="8" cols="40"><%=comment.content%></textarea>
+      </li>
+    </ul>
+    <input type="hidden" name="author" value="<%=  %>">
+    <input type="hidden" name="date" value="<%=moment().format()%>">
+    <button type="submit">Update Post</button>
+  </form>
+  </br>
+  <form action="/comments/<%= comment._id %>?_method=DELETE" method="comment">
+    <button type="submit" name="delete">Delete Post</button>
+  </form>
 
 <% include ../partials/footer %>

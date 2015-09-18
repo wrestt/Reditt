@@ -2,15 +2,21 @@ var db = require('../models/index');
 
 // INDEX
 app.get('/posts/:post_id/comments', function(req, res){
-  db.Post.findById(req.params.post_id, function(err, post){
-    if (err) {
-      console.log(err);
-    } else {
-      db.Comment.find({}, function(err, comments){
-        res.render('comments/index', {comments: comments, post:post});
-      });
-    }
-  });
+  db.Post.findById(req.params.post_id)
+    .populate('comments')
+    .exec(function(err, post){
+      if (err) {
+        console.log(err);
+      } else {
+        db.Comment.populate(post, {
+          path: 'comments.owner',
+          model: 'User'
+        },
+        function(err, comments) {
+          res.render('comments/index', {comments: comments, post:post});
+        });
+      }
+    });
 });
 
 // NEW
@@ -20,7 +26,6 @@ app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn,function(
       console.log(err);
     } else {
       db.User.findById(req.session.id, function(err, user){
-         console.log("post", post);
          res.render('comments/new', {user: user, post: post});
        });
     }
@@ -29,16 +34,28 @@ app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn,function(
 
 // CREATE
 app.post('/posts/:post_id/comments', function(req, res){
-  db.Post.findById(req.params.post_id, function(err, post){
+  db.User.findById(req.session.id, function(err, owner){
     if (err) {
       console.log(err);
     } else {
-      db.Comment.create(req.body, function(err, comment){
-        post.comments.push(comment);
-        comment.post = post._id;
-        comment.save();
-        post.save();
-        res.redirect('/posts/' + post._id + '/comments');
+      db.Post.findById(req.params.post_id, function(err, post){
+        if (err) {
+          console.log(err);
+        } else {
+           req.body.owner = owner;
+          db.Comment.create(req.body, function(err, comment){
+            console.log("err", err);
+            console.log('commment', comment);
+            post.comments.push(comment);
+            owner.comments.push(comment);
+            comment.owner = owner._id;
+            comment.post = post._id;
+            comment.save();
+            post.save();
+            owner.save();
+            res.redirect('/posts/' + post._id + '/comments');
+          });
+        }
       });
     }
   });

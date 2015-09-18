@@ -9,7 +9,7 @@
     <textarea type="text" name="content" rows="8" cols="40" placeholder="content"></textarea>
   </li>
 </ul>
-<input type="hidden" name="author" value="<% user.name%>">
+<input type="hidden" name="owner" value="<% user.name%>">
 <input type="hidden" name="date" value="<%=moment().format()%>">
 <button type="submit" name="create">Create Post</button>
 </form>

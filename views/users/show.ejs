@@ -18,6 +18,7 @@
 </br></br>
   <h4>Posts Made by <%= user.name%></h4>
   <ul class="collection">
+
     <% user.posts.forEach(function(post){ %>
     <li class="collection-item avatar">
       <img src="<%= post.image%>" alt="<%= user.name%> <%= post.content%>" class="circle">
@@ -32,14 +33,15 @@
   </br></br>
   <h4>Comments Made by <%= user.name%></h4>
   <ul class="collection">
-    <% user.comments.forEach(function(comment){ %>
+    <% posts.forEach(function(comment){ %>
     <li class="collection-item avatar">
-      <img src="<%= post.image%>" alt="<%= user.name%> " class="circle">
-      <span class="title"><a href="/posts/<%= post._id%>"><%= post.title%></a></span>
+      <h1>COMMENT: <%= comment %></h1>
+      <img src="<%= comment.image%>" alt="<%= user.name%> " class="circle">
+      <span class="title"><a href="/posts/<%= user.post._id%>"><%= comment.post.title%></a></span>
       <p><%= moment(comment.date).format('l') %><br>
          <%= comment.content%>
       </p>
-      <a href="/posts/<%= post._id%>" class="secondary-content"><i class="material-icons">grade</i></a>
+      <a href="/posts/<%= user.post._id%>" class="secondary-content"><i class="material-icons">grade</i></a>
     </li>
     <% })%>
   </ul>

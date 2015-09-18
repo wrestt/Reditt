@@ -33,8 +33,15 @@ app.get('/users/:id',function(req, res){
   db.User.findById(req.params.id)
     .populate('posts')
     .exec(function(err, user){
-      console.log(user.posts);
-      res.render('users/show', {user: user, moment: moment});
+      if (err) {
+        console.log(err);
+      } else {
+        db.Post.populate(user, {
+          path: 'posts.comments',
+          model: "Comment"
+        });
+      }
+      res.render('users/show', {user: user, posts: user.posts, moment: moment});
     });
 });
 

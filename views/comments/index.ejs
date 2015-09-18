@@ -7,10 +7,13 @@
 <a href="/posts/<%= post._id%>/comments/new">New Comment</a>
 
 <ul class="collection">
-  <% posts.comments.forEach(function(comment){ %>
+  <% post.comments.forEach(function(comment){ %>
   <li class="collection-item avatar">
-    <img src="<%= user.image%>" alt="<%= user.name%> " class="circle">
-    <span class="title"><a href="/posts/<%= post._id%>"><%= user.name%></a></span>
+      <% if(comment.owner) {%>
+    <img src="<%= comment.owner.avatar%>" alt="<%= comment.owner.name%>" class="circle">
+
+    <span class="title"><a href="/posts/<%= post._id%>"><%= comment.owner.name%></a></span>
+    <% } %>
     <p><%= moment(comment.date).format('l') %><br>
        <%= comment.content%>
     </p>

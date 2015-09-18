@@ -41,7 +41,7 @@ app.get('/users/:id',function(req, res){
           model: "Comment"
         });
       }
-      res.render('users/show', {user: user, posts: user.posts, moment: moment});
+      res.render('users/show', {user: user, posts: user.posts || [], moment: moment});
     });
 });
 
